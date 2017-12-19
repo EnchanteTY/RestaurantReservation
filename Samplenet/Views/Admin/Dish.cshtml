@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RestaurantReservation.BL.Entities.Dish>
+
+@{
+    ViewBag.Title = "Admin : All Dishes";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>All Dishes</h2>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-title">      
+        @if (Request.IsAuthenticated && User.IsInRole("Owner"))
+        {
+            <a href="@Url.Action("Create")" class="btn btn-default adminAddDish"> Add new dish</a>
+        }
+       
+    </div>   
+   
+    <div class="panel-body">        
+        <table class="table table-bordered table-striped"> 
+            <thead>
+                <tr>
+                    <th class="text-right">ID</th>
+                    <th class="text-right">Name</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Actions</th>
+                </tr> 
+            </thead>
+                     
+            @foreach (var dish in Model)
+            {
+                <tr class="text-right">     
+                    <td>@dish.DishID</td>                    
+                    <td><a href="@Url.Action("Detail","Dish",new{id =dish.DishID})">@dish.Name</a></td>                    
+                    <td>@dish.StandardPrice.ToString("c")</td>                    
+                    <td>                        
+                      <span><a href="@Url.Action("Edit", new {id = dish.DishID})"> Edit </a></span>
+                      <span><a href="@Url.Action("Delete", new {id = dish.DishID})"> Delete </a></span>
+                    </td>                
+                </tr>           
+            }        
+         </table>    
+    </div>    
+   
+</div>

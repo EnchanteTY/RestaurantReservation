@@ -1,0 +1,36 @@
+﻿@model RestaurantReservation.BL.Entities.DishImage
+
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Upload Dish Image</h2>
+
+
+@using (Html.BeginForm("Upload", "DishImage",FormMethod.Post,new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FileName)
+            <div>
+                <input type="file" name="files" id="files" multiple="multiple" class="form-control" />
+                @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+            </div>
+            <p> **You can upload 4 images at once.</p>
+        </div>
+        
+
+        <div class="form-group">
+            <div>
+                <input type="submit" value="Upload" class="btn btn-warning" />
+            </div>
+
+        </div>
+    </div>
+}
+
+
