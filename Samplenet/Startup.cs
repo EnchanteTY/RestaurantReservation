@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(RestaurantReservation.WebUI.Startup))]
-namespace RestaurantReservation.WebUI
+[assembly: OwinStartupAttribute(typeof(Samplenet.Startup))]
+namespace Samplenet
 {
     public partial class Startup
     {

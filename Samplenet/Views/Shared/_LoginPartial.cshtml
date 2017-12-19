@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNet.Identity
-
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -8,26 +7,8 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <a href="#">Hello, @User.Identity.Name!</a>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-       
-            @if(Request.IsAuthenticated && User.IsInRole("Owner"))
-            {
-                <li>
-                    @Html.ActionLink("Manage Restaurant", "Index", "Order")
-                </li>
-            
-            }
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-            {
-                <li>
-                    @Html.ActionLink("Serve List", "Index", "Order")
-                </li>
-                
-
-            }
-
-       
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
@@ -35,9 +16,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account",new { returnUrl =
-            HttpContext.Current.Request.Url.AbsolutePath }, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", new { returnUrl =
-            HttpContext.Current.Request.Url.AbsolutePath }, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

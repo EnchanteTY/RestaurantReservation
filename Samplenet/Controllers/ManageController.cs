@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using RestaurantReservation.WebUI.ViewModels;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Samplenet.Models;
 
-namespace RestaurantReservation.WebUI.Controllers
+namespace Samplenet.Controllers
 {
     [Authorize]
     public class ManageController : Controller
@@ -31,9 +32,9 @@ namespace RestaurantReservation.WebUI.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -332,7 +333,7 @@ namespace RestaurantReservation.WebUI.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
+#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -383,6 +384,6 @@ namespace RestaurantReservation.WebUI.Controllers
             Error
         }
 
-        #endregion
+#endregion
     }
 }

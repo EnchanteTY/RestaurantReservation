@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using RestaurantReservation.BL.Entities;
-using RestaurantReservation.WebUI.ViewModels;
+﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Samplenet.Models;
 
-namespace RestaurantReservation.WebUI.Controllers
+namespace Samplenet.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -20,7 +22,7 @@ namespace RestaurantReservation.WebUI.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -32,9 +34,9 @@ namespace RestaurantReservation.WebUI.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -49,8 +51,6 @@ namespace RestaurantReservation.WebUI.Controllers
                 _userManager = value;
             }
         }
-
-
 
         //
         // GET: /Account/Login
@@ -79,11 +79,7 @@ namespace RestaurantReservation.WebUI.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-
-
                     return RedirectToLocal(returnUrl);
-
-
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -91,8 +87,6 @@ namespace RestaurantReservation.WebUI.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    ViewBag.ReturnUrl = returnUrl;
-
                     return View(model);
             }
         }
@@ -126,7 +120,7 @@ namespace RestaurantReservation.WebUI.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -143,9 +137,8 @@ namespace RestaurantReservation.WebUI.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register(string returnUrl)
+        public ActionResult Register()
         {
-            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -154,7 +147,7 @@ namespace RestaurantReservation.WebUI.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, string returnUrl)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -162,18 +155,16 @@ namespace RestaurantReservation.WebUI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, "Users");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Home");
                 }
-                ViewBag.ReturnUrl = returnUrl;
                 AddErrors(result);
             }
 

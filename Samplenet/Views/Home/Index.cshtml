@@ -1,83 +1,31 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div class="text-center">
-    <table class="introTray table table-bordered">
-        <tr>
-            <td class="logo">
-                <img src="~/Content/Images/logo.jpg" sizes="stretch" />
-            </td>
-            <td class="intro">
-                <h2>Delight Restaurant</h2>
-                <h3>Your neighbourhood Chinese restaurant that brings you the taste of family</h3>
-                <h3>
-                    Start browsing our <a href="@Url.Action("List","Dish")" class="btn btn-default">Menu</a> and order now! 
-                    
-                </h3>
-            </td>
-        </tr>
-       
-    </table>
-    <div class="dishShowCase">
-        <div class="dishShow"><img src="~/Content/DishImages/Bakuteh.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/bittergourd.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/brocolli.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/chilicrab.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/clamsoup.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/crab.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/currychicken.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/dumpling.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/eggplant.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/fish.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/friedfish.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/greenveggie.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/herbalchicken.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/kungpao.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/lotusroot.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/mapotofu.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/mushroom.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/oyster.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/prawn.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/redpork.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/seaweed.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/springrolls.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/sweetpork.jpg" /></div>
-        <div class="dishShow"><img src="~/Content/DishImages/whiteradish.jpg" /></div>
 
-    </div>
-   
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-
-<script>
-  const slider = document.querySelector('.dishShowCase');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return;  // stop the fn from running
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 3;
-    slider.scrollLeft = scrollLeft - walk;
-  });
-
-</script>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>

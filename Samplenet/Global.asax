@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="RestaurantReservation.WebUI.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Samplenet.MvcApplication" Language="C#" %>
