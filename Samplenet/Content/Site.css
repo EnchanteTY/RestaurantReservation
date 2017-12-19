@@ -22,3 +22,215 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.dishThumbnail {
+    border: orange inset 5px;
+    border-radius: 50%;
+    margin:5px;
+    width: 80%;
+    height: 150px;
+
+}
+
+
+
+
+
+.dishTileTray{
+    height: 30%;
+}
+
+.dishTile{
+    background-color:cornsilk;
+    border: groove coral;
+    height:30%;
+    margin: 5px;
+   
+}
+
+.addCart{
+    color: white;
+    background-color: sandybrown;
+    border:groove 3px orange;
+    font-size:large;
+    margin-bottom: 10px;
+    
+}
+
+a.dishLink{
+    color:darkgoldenrod;
+}
+
+.dishDetailImage{
+    border: orange inset 5px;
+}
+
+.table-bordered thead{
+    background: #b0c14c;
+}
+
+.table-bordered caption{
+    font-size:large;
+    color:#b4991b;
+}
+
+.dishDetailTable{
+    width: 60%;
+}
+
+.dishDetailName {
+    color: darkgoldenrod;
+}
+
+.categoryButton {
+    margin: 5px;
+    background-color: #e68634;
+    color: white;
+    border: groove 3px orange;
+}
+
+.categoryNavigation{
+    margin:25px 10px 10px 10px;
+}
+
+.currentCategoryName {
+    color: #e68634;
+    margin-bottom:20px;
+   
+    
+}
+
+.navbar-inverse{
+    background-color:burlywood;
+}
+
+.navbar-inverse .navbar-brand{
+    color:chocolate;
+    font-weight:600;
+    font-size:x-large;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+        color: #b94a48;
+        font-size:large;
+
+}
+
+
+.cartButton{
+    border: outset 3px coral;
+    background-color:#b94a48;
+    font-size:large;
+    margin:10px;
+    color: white;
+   
+}
+
+.checkOutForm .form-inline >label{
+    color:chocolate;
+    font-size:large;
+}
+
+.checkOutForm .form-inline{
+    margin: 10px;
+   
+}
+
+.checkOutSubmit{
+    background-color:coral;
+    margin-left: 25px;
+    color: white;
+    margin-top:10px;
+}
+
+.field-validation-error{
+    color: orangered;
+}
+
+.thankYou{
+    margin-top: 50px;
+
+    background-color:khaki;
+  
+    padding: 10px;
+    border: double 5px coral;
+}
+
+.dishShowCase {
+    margin:30px;
+    height: 200px;
+    padding: 100px;
+    width: 90%;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    transform: scale(0.98);
+    will-change: transform;
+    position: relative;
+    background-color:burlywood;
+   
+}
+
+    .dishShowCase.active {
+        background-color:rosybrown;
+        cursor: grabbing;
+        cursor: -webkit-grabbing;
+        transform: scale(1);
+    }
+
+.dishShow {
+    margin:5px;
+    width: 200px;
+    height:100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+   
+  
+}
+
+    .dishShow > img {
+        border: solid 5px white;
+    }
+
+.adminAddDish{
+    background-color:orange;
+    color: white;
+}
+
+
+.adminButtonTray{
+    margin-top: 50px;
+}
+
+.adminButton{
+    background-color: lightsalmon;
+    color:darkslategrey;
+    font-size:large;
+    border: groove 2px darkgoldenrod;
+    display:block;
+    margin: 5%;
+}
+
+.introTray {
+    margin: 30px;
+    border: ridge 5px #b94a48;
+    width: 100%;
+}
+
+.intro{
+    background-color:salmon;
+    font-size:larger;
+    
+}
+
+
+
+.logo > img {
+    border: ridge 5px #b94a48;
+    width: 250px;
+}

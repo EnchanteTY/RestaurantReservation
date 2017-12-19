@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ThankYou";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="thankYou">
+  <h2>Thank you for your reservation.</h2>
+  <h3>We are looking forward to serving you.</h3>
+  <a href="@Url.Action("CustomerOrder", "Order", new { userId = User.Identity.Name})" class="btn btn-default"
+     >View your order</a>
+    
+</div>
+
+
+
+

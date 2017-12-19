@@ -1,0 +1,22 @@
+﻿@model IEnumerable<RestaurantReservation.BL.Entities.Category>
+
+<div class="text-center categoryNavigation">
+    @foreach (var category in Model)
+    {
+
+        <a href="@Url.Action("List", "Dish", new {category = category.Name})"
+           class="btn btn-default btn-lg categoryButton">
+            @category.Name
+        </a>
+
+
+
+    }
+
+    <a href="@Url.Action("List", "Dish")" class="btn btn-default btn-lg categoryButton">
+        All Dishes
+    </a>
+
+
+</div>
+

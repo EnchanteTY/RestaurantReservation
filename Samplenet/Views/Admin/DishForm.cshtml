@@ -1,0 +1,62 @@
+﻿@model RestaurantReservation.WebUI.ViewModels.DishFormViewModel
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+
+@using (Html.BeginForm(Model.Action, "Admin"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(d =>d.DishID)
+    <div class="form-group">
+        @Html.LabelFor(d=>d.Name)
+        @Html.TextBoxFor(e => e.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(d=>d.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(d=>d.StandardPrice)
+        @Html.TextBoxFor(d=>d.StandardPrice, new { @class = "form-control"})
+        @Html.ValidationMessageFor(d=>d.StandardPrice)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(d =>d.CategoryID)
+        @Html.DropDownListFor(d=>d.CategoryID, Model.CategoryList,new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.CategoryID)
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(d=>d.Description)
+        @Html.TextAreaFor(d=>d.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(d =>d.Description)
+    </div>
+    for (int i = 0; i < Model.ImageLists.Count; i++)
+    {
+        <div class="form-group">
+            <label>Dish Image @(i + 1):</label>
+            <div>
+                @Html.DropDownListFor(d => d.DishImages, Model.ImageLists[i], "Choose Image",new { @class = "form-control" })
+            
+      
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+

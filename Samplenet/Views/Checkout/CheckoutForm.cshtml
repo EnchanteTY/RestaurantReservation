@@ -1,0 +1,73 @@
+﻿@model RestaurantReservation.BL.Entities.Order
+
+@{
+    ViewBag.Title = "ChecekOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Check Out</h2>
+
+
+@using (Html.BeginForm("CheckOut"))
+{
+    <p class="alert alert-warning">All fields are <strong>required</strong>.</p>
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(d => d.OrderID)
+    @Html.HiddenFor(d => d.UserID)
+    @Html.HiddenFor(d =>d.TotalPrice)
+    <div class="checkOutForm">
+        <div class="form-inline">
+            @Html.LabelFor(d => d.Salutation,new { @class = "col-md-2" })
+            @Html.EnumDropDownListFor(d => d.Salutation, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.Salutation)
+        </div>
+        <div class="form-inline">
+            @Html.LabelFor(d => d.FirstName, new { @class = "col-md-2" })
+            @Html.TextBoxFor(d => d.FirstName, new { @class = "form-control",autofocus="autofocus" })
+            @Html.ValidationMessageFor(d => d.FirstName)
+        </div>
+        <div class="form-inline">
+            @Html.LabelFor(d => d.LastName, new { @class = "col-md-2" })
+            @Html.TextBoxFor(d => d.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.LastName)
+        </div>
+        <div class="form-inline">
+            @Html.LabelFor(d => d.PhoneNumber, new { @class = "col-md-2" })
+            @Html.TextBoxFor(d => d.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.PhoneNumber)
+        </div>
+        <div class="form-inline">
+            @Html.HiddenFor(d => d.TableOrdered)
+            @Html.LabelFor(d => d.TableOrdered, new { @class = "col-md-2" })
+            @Html.TextBoxFor(d => d.TableOrdered, new { @class = "form-control", disabled = "disabled" })
+            @Html.ValidationMessageFor(d => d.TableOrdered)
+        </div>
+        <div class="form-inline">
+            @Html.LabelFor(d => d.MealDate, new { @class = "col-md-2" })
+            @Html.TextBoxFor(d => d.MealDate, new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(d => d.MealDate)
+        </div>
+
+        <div class="form-inline">
+            @Html.LabelFor(d => d.ExtraRequest, new { @class = "col-md-2" })
+            @Html.TextAreaFor(d => d.ExtraRequest, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.ExtraRequest)
+        </div>
+        <div class="form-inline">
+            @Html.LabelFor(d => d.MealTime, new { @class = "col-md-2" })
+            @Html.EnumDropDownListFor(d => d.MealTime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.MealTime)
+        </div>
+       
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default btn-lg checkOutSubmit">Submit</button>
+    </div>
+
+}
+
+
+
+
+

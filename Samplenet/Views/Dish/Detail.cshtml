@@ -1,0 +1,94 @@
+﻿@model RestaurantReservation.BL.Entities.Dish
+@using RestaurantReservation.WebUI.Constant
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div>
+    <h2 class="dishDetailName text-center">@Model.Name</h2>
+    <hr />
+    <div class="col-md-offset-2 col-md-6">
+        
+
+        <h3>@Model.Category.Name</h3>
+        <h3>@Model.Description</h3>
+        <p>
+            <h3>Standard price: @((Model.StandardPrice).ToString("c"))</h3>
+
+            <table class="table table-bordered dishDetailTable">
+                <caption><strong>Recommended size</strong></caption>
+                <thead>
+                    <tr>
+                        <td>People</td>
+                        <td>Size</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1 -3</td>
+                        <td>Small</td>
+                        <td>@((Model.StandardPrice/3).ToString("c"))</td>
+                    </tr>
+                    <tr>
+                        <td>4-6</td>
+                        <td>Medium</td>
+                        <td>@((Model.StandardPrice/3*2).ToString("c"))</td>
+                    </tr>
+                    <tr>
+                        <td>7-10</td>
+                        <td>Standard</td>
+                        <td>@((Model.StandardPrice).ToString("c"))</td>
+                    </tr>
+                    <tr>
+                        <td>Not enough? </td>
+                        <td>Extra Large</td>
+                        <td>@((Model.StandardPrice / 3 * 4).ToString("c"))</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                        @using (Html.BeginForm("AddToCart", "Cart", new { id = Model.DishID }))
+                        {
+                            <div>
+                                @Html.HiddenFor(m => m.DishID)
+                                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                <input type="submit" class="btn addCart" value="Add to cart" />
+                            </div>
+                        }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+    </div>
+    <div>
+        @if (Model.DishImageMappings != null && Model.DishImageMappings.Any())
+        {
+
+            <img class="dishDetailImage" src="@(Url.Content(Constant.DishImagePath) +
+                    Model.DishImageMappings.OrderBy(pim =>  pim.ImageNumber).ElementAt(0).DishImage.FileName)" style=padding:5px>
+
+            if (Model.DishImageMappings.Count > 1)
+            {
+                foreach (var item in Model.DishImageMappings.OrderBy(pim =>
+               pim.ImageNumber))
+                {
+
+                    <img src="@(Url.Content(Constant.DishThumbnailPath) +
+                            item.DishImage.FileName)" style=padding:5px>
+
+                }
+            }
+
+
+        }
+    </div>
+ 
+       
+    
+</div>
