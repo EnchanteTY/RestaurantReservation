@@ -1,6 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
-namespace RestaurantReservation.WebUI.Controllers
+namespace Samplenet.Controllers
 {
     public class HomeController : Controller
     {

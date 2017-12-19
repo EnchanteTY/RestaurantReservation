@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using RestaurantReservation.BL.Data;
-using RestaurantReservation.BL.Entities;
-using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
+using Samplenet.Models;
 
-namespace RestaurantReservation.WebUI
+namespace Samplenet
 {
     public class EmailService : IIdentityMessageService
     {
@@ -37,9 +40,9 @@ namespace RestaurantReservation.WebUI
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ReservationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
@@ -78,13 +81,11 @@ namespace RestaurantReservation.WebUI
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider =
+                manager.UserTokenProvider = 
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
-
-
     }
 
     // Configure the application sign-in manager which is used in this application.
@@ -105,19 +106,4 @@ namespace RestaurantReservation.WebUI
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
-
-    public class ApplicationRoleManager : RoleManager<IdentityRole>
-    {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
-            : base(roleStore)
-        {
-        }
-        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager>
-             options, IOwinContext context)
-        {
-            return new ApplicationRoleManager(new
-            RoleStore<IdentityRole>(context.Get<ReservationDbContext>()));
-        }
-    }
-
 }

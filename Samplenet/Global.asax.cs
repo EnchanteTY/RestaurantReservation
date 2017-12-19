@@ -1,33 +1,21 @@
-﻿using Ninject;
-using Ninject.Web.Common.WebHost;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace RestaurantReservation.WebUI
+namespace Samplenet
 {
-    public class MvcApplication : NinjectHttpApplication
+    public class MvcApplication : System.Web.HttpApplication
     {
-        protected override IKernel CreateKernel()
+        protected void Application_Start()
         {
-            var kernel = new StandardKernel();
-            RegisterServices(kernel);
-            return kernel;
-        }
-
-        private static void RegisterServices(IKernel kernel)
-        {
-            DependencyResolver.SetResolver(new Infrastructure.NinjectDependencyResolver(kernel));
-        }
-        protected override void OnApplicationStarted()
-        {
-            base.OnApplicationStarted();
-            //Database.SetInitializer(new DbInitializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-
     }
 }

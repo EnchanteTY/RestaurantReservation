@@ -1,7 +1,7 @@
-﻿using System.Web.Optimization;
+﻿using System.Web;
+using System.Web.Optimization;
 
-namespace RestaurantReservation.WebUI
-
+namespace Samplenet
 {
     public class BundleConfig
     {
